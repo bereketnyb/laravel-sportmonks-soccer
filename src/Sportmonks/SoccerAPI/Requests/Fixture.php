@@ -42,5 +42,10 @@ class Fixture extends SoccerAPIClient {
         return $this->call('head2head/' . $firstTeamId . '/' . $secondTeamId);
     }
 
+    public function multi($array)
+    {
+        return $this->call('fixtures/multi/' . join(',', $array));
+    }
+
 
 }
