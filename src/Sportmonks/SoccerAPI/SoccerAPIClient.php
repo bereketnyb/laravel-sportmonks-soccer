@@ -21,7 +21,7 @@ class SoccerAPIClient {
     {
         $options = [
             'base_uri'  => 'https://soccer.sportmonks.com/api/v2.0/',
-            'verify'    => app('env') === 'testing' ? false : true,
+            'verify'    => app('env') === 'local' ? false : true,
         ];
         $this->client = new Client($options);
 
@@ -51,7 +51,7 @@ class SoccerAPIClient {
             $query['tz'] = $this->timezone;
         }
 
-        $response = $this->client->get($url, ['query' => $query]);
+        $response = $this->client->get($url, ['query' => $query, 'headers' => ['Accept-Encoding' => 'gzip']];
 
         $body = json_decode($response->getBody()->getContents());
 
